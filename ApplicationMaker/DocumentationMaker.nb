@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[    115464,       2477]
-NotebookOptionsPosition[    114155,       2437]
-NotebookOutlinePosition[    114833,       2461]
-CellTagsIndexPosition[    114790,       2458]
+NotebookDataLength[    115887,       2487]
+NotebookOptionsPosition[    114539,       2446]
+NotebookOutlinePosition[    115215,       2470]
+CellTagsIndexPosition[    115172,       2467]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -264,6 +264,13 @@ NewApplication\>\""}], ";"}], "\[IndentingNewLine]",
 Cell[BoxData[
  RowBox[{
   RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], ";"}]], "Code"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"fileNameJoin", "=", 
+   RowBox[{"FileNameJoin", "@*", 
+    RowBox[{"DeleteCases", "[", "\"\<\>\"", "]"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6898151045996637`*^9, 3.689815107073642*^9}}],
 
 Cell[BoxData[{
  RowBox[{
@@ -681,7 +688,7 @@ Cell[BoxData[{
    RowBox[{
    "guideName_String", ",", " ", "appName_String", ",", "\[IndentingNewLine]", 
     RowBox[{"appDir_String:", " ", 
-     RowBox[{"FileNameJoin", "[", 
+     RowBox[{"fileNameJoin", "[", 
       RowBox[{"{", " ", 
        RowBox[{"$UserBaseDirectory", ",", "\"\<Applications\>\""}], "}"}], 
       "]"}]}]}], "\[IndentingNewLine]", "]"}], " ", ":=", " ", 
@@ -692,7 +699,7 @@ Cell[BoxData[{
     ",", "\[IndentingNewLine]", 
     RowBox[{
      RowBox[{"appNameDir", " ", "=", "  ", 
-      RowBox[{"FileNameJoin", "[", 
+      RowBox[{"fileNameJoin", "[", 
        RowBox[{"{", 
         RowBox[{"appDir", ",", " ", "appName"}], "}"}], "]"}]}], ";", 
      "\[IndentingNewLine]", 
@@ -708,7 +715,7 @@ Cell[BoxData[{
         RowBox[{"Return", "[", "$Failed", "]"}]}]}], "]"}], ";", 
      "\[IndentingNewLine]", 
      RowBox[{"guidePath", " ", "=", " ", 
-      RowBox[{"FileNameJoin", "[", "\[IndentingNewLine]", 
+      RowBox[{"fileNameJoin", "[", "\[IndentingNewLine]", 
        RowBox[{"{", 
         RowBox[{
         "appNameDir", ",", "\"\<Documentation\>\"", ",", " ", 
@@ -737,7 +744,7 @@ Cell[BoxData[{
      RowBox[{"SetOptions", "[", 
       RowBox[{"nb", ",", " ", "\[IndentingNewLine]", 
        RowBox[{"StyleDefinitions", "\[Rule]", " ", 
-        RowBox[{"FileNameJoin", "[", 
+        RowBox[{"fileNameJoin", "[", 
          RowBox[{"{", 
           RowBox[{
           "appDir", ",", " ", "\"\<ApplicationMaker\>\"", ",", 
@@ -1102,7 +1109,8 @@ same sequence of keys.\>\"", ",", " ", "\"\<GuideAbstract\>\""}], "]"}]}],
    3.519330867796097*^9, 3.519330880520084*^9}, {3.51933131769874*^9, 
    3.519331320897189*^9}, {3.51933142944716*^9, 3.519331431241488*^9}, {
    3.519338154888891*^9, 3.519338160045431*^9}, {3.519505668279405*^9, 
-   3.519505685276161*^9}, {3.519507435934308*^9, 3.519507440295217*^9}}],
+   3.519505685276161*^9}, {3.519507435934308*^9, 3.519507440295217*^9}, {
+   3.689815104683723*^9, 3.689815104743765*^9}}],
 
 Cell[BoxData[{
  RowBox[{
@@ -1117,7 +1125,7 @@ Cell[BoxData[{
    RowBox[{
    "tutName_String", ",", " ", "appName_String", ",", "\[IndentingNewLine]", 
     RowBox[{"appDir_String:", " ", 
-     RowBox[{"FileNameJoin", "[", 
+     RowBox[{"fileNameJoin", "[", 
       RowBox[{"{", " ", 
        RowBox[{"$UserBaseDirectory", ",", "\"\<Applications\>\""}], "}"}], 
       "]"}]}]}], "\[IndentingNewLine]", "]"}], " ", ":=", " ", 
@@ -1128,7 +1136,7 @@ Cell[BoxData[{
     "\[IndentingNewLine]", 
     RowBox[{
      RowBox[{"appNameDir", " ", "=", "  ", 
-      RowBox[{"FileNameJoin", "[", 
+      RowBox[{"fileNameJoin", "[", 
        RowBox[{"{", 
         RowBox[{"appDir", ",", " ", "appName"}], "}"}], "]"}]}], ";", 
      "\[IndentingNewLine]", 
@@ -1144,7 +1152,7 @@ Cell[BoxData[{
         RowBox[{"Return", "[", "$Failed", "]"}]}]}], "]"}], ";", 
      "\[IndentingNewLine]", 
      RowBox[{"tutPath", " ", "=", " ", 
-      RowBox[{"FileNameJoin", "[", "\[IndentingNewLine]", 
+      RowBox[{"fileNameJoin", "[", "\[IndentingNewLine]", 
        RowBox[{"{", 
         RowBox[{
         "appNameDir", ",", "\"\<Documentation\>\"", ",", " ", 
@@ -1172,7 +1180,7 @@ Cell[BoxData[{
      RowBox[{"SetOptions", "[", 
       RowBox[{"nb", ",", " ", "\[IndentingNewLine]", 
        RowBox[{"StyleDefinitions", "\[Rule]", " ", 
-        RowBox[{"FileNameJoin", "[", 
+        RowBox[{"fileNameJoin", "[", 
          RowBox[{"{", 
           RowBox[{
           "appDir", ",", " ", "\"\<ApplicationMaker\>\"", ",", 
@@ -1418,7 +1426,7 @@ the cells they contain for a quick template.\>\"", ",", " ", "\"\<Text\>\""}],
   3.519331455618058*^9, 3.519331541385141*^9}, {3.519331662448295*^9, 
   3.519331663612362*^9}, {3.519331801838982*^9, 3.519331817977971*^9}, {
   3.5193381116760817`*^9, 3.519338130271162*^9}, {3.519352520341064*^9, 
-  3.519352527135949*^9}}],
+  3.519352527135949*^9}, {3.6898151047832956`*^9, 3.6898151048168187`*^9}}],
 
 Cell[BoxData[{
  RowBox[{
@@ -1432,7 +1440,7 @@ Cell[BoxData[{
   RowBox[{"CreateReferencePages", "[", 
    RowBox[{"appName_String", ",", "\[IndentingNewLine]", 
     RowBox[{"appDir_String:", " ", 
-     RowBox[{"FileNameJoin", "[", 
+     RowBox[{"fileNameJoin", "[", 
       RowBox[{"{", " ", 
        RowBox[{"$UserBaseDirectory", ",", "\"\<Applications\>\""}], "}"}], 
       "]"}]}]}], "\[IndentingNewLine]", "]"}], " ", ":=", " ", 
@@ -1450,12 +1458,12 @@ Cell[BoxData[{
      RowBox[{"Off", "[", 
       RowBox[{"General", "::", "stop"}], "]"}], ";", "\[IndentingNewLine]", 
      RowBox[{"appNameDir", " ", "=", "  ", 
-      RowBox[{"FileNameJoin", "[", 
+      RowBox[{"fileNameJoin", "[", 
        RowBox[{"{", 
         RowBox[{"appDir", ",", " ", "appName"}], "}"}], "]"}]}], ";", 
      "\[IndentingNewLine]", 
      RowBox[{"symDir", " ", "=", " ", 
-      RowBox[{"FileNameJoin", "[", "\[IndentingNewLine]", 
+      RowBox[{"fileNameJoin", "[", "\[IndentingNewLine]", 
        RowBox[{"{", 
         RowBox[{
         "appNameDir", ",", "\"\<Documentation\>\"", ",", " ", 
@@ -1504,7 +1512,7 @@ Cell[BoxData[{
          RowBox[{
           RowBox[{
            RowBox[{"refPath", " ", "=", " ", 
-            RowBox[{"FileNameJoin", "[", 
+            RowBox[{"fileNameJoin", "[", 
              RowBox[{"{", 
               RowBox[{"symDir", ",", " ", 
                RowBox[{"StringJoin", "[", 
@@ -1530,7 +1538,7 @@ Cell[BoxData[{
               RowBox[{"SetOptions", "[", 
                RowBox[{"nb", ",", "\[IndentingNewLine]", 
                 RowBox[{"StyleDefinitions", "\[Rule]", " ", 
-                 RowBox[{"FileNameJoin", "[", "\[IndentingNewLine]", 
+                 RowBox[{"fileNameJoin", "[", "\[IndentingNewLine]", 
                   RowBox[{"{", 
                    RowBox[{
                    "appDir", ",", " ", "\"\<ApplicationMaker\>\"", ",", 
@@ -2414,7 +2422,8 @@ Mathematica.html\>\"", "]"}], ",", "None"}], "}"}], "]"}],
    3.519337427240822*^9}, {3.519337840856208*^9, 3.5193378462303867`*^9}, {
    3.519337954240429*^9, 3.519338013620294*^9}, {3.519339004038072*^9, 
    3.519339015222971*^9}, {3.519339323960567*^9, 3.519339328825448*^9}, {
-   3.519339388535425*^9, 3.5193393899379997`*^9}}],
+   3.519339388535425*^9, 3.5193393899379997`*^9}, {3.6898151049349017`*^9, 
+   3.689815105062994*^9}}],
 
 Cell[BoxData[
  RowBox[{
@@ -2436,17 +2445,17 @@ Cell[BoxData[
   RowBox[{"EndPackage", "[", "]"}], ";"}]], "Code"]
 },
 AutoGeneratedPackage->Automatic,
-WindowSize->{933, 743},
+WindowSize->{933, 709},
 WindowMargins->{{22, Automatic}, {Automatic, 2}},
-FrontEndVersion->"8.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (February 23, \
-2011)",
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (2016\:5e747\:670828\
+\:65e5)",
 StyleDefinitions->Notebook[{
    Cell[
     StyleData[StyleDefinitions -> "Default.nb"]], 
    Cell[
     StyleData["Input"], InitializationCell -> True]}, Visible -> False, 
   FrontEndVersion -> 
-  "8.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (February 23, 2011)", 
+  "11.0 for Microsoft Windows (64-bit) (2016\:5e747\:670828\:65e5)", 
   StyleDefinitions -> "PrivateStylesheetFormatting.nb"]
 ]
 (* End of Notebook Content *)
@@ -2460,27 +2469,27 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[557, 20, 1678, 48, 149, "Code"],
-Cell[2238, 70, 131, 4, 43, "Code"],
-Cell[2372, 76, 829, 16, 73, "Input"],
-Cell[3204, 94, 133, 4, 43, "Code"],
-Cell[3340, 100, 3424, 72, 313, "Input"],
-Cell[6767, 174, 133, 4, 43, "Code"],
-Cell[6903, 180, 3526, 81, 403, "Input"],
-Cell[10432, 263, 91, 2, 43, "Code"],
-Cell[10526, 267, 8020, 198, 688, "Input"],
-Cell[18549, 467, 2158, 52, 223, "Input"],
-Cell[20710, 521, 2548, 60, 253, "Input"],
-Cell[23261, 583, 1958, 45, 103, "Input"],
-Cell[25222, 630, 1610, 38, 118, "Input"],
-Cell[26835, 670, 20802, 434, 1768, "Input"],
-Cell[47640, 1106, 14695, 314, 1318, "Input"],
-Cell[62338, 1422, 51162, 994, 4123, "Input"],
-Cell[113503, 2418, 68, 2, 43, "Code"],
-Cell[113574, 2422, 499, 9, 43, "Input"],
-Cell[114076, 2433, 75, 2, 43, "Code"]
+Cell[557, 20, 1678, 48, 177, "Code"],
+Cell[2238, 70, 131, 4, 50, "Code"],
+Cell[2372, 76, 829, 16, 140, "Input"],
+Cell[3204, 94, 133, 4, 50, "Code"],
+Cell[3340, 100, 3424, 72, 408, "Input"],
+Cell[6767, 174, 133, 4, 50, "Code"],
+Cell[6903, 180, 3526, 81, 522, "Input"],
+Cell[10432, 263, 91, 2, 50, "Code"],
+Cell[10526, 267, 229, 5, 63, "Input"],
+Cell[10758, 274, 8020, 198, 1423, "Input"],
+Cell[18781, 474, 2158, 52, 428, "Input"],
+Cell[20942, 528, 2548, 60, 502, "Input"],
+Cell[23493, 590, 1958, 45, 103, "Input"],
+Cell[25454, 637, 1610, 38, 259, "Input"],
+Cell[27067, 677, 20852, 435, 3526, "Input"],
+Cell[47922, 1114, 14745, 314, 2568, "Input"],
+Cell[62670, 1430, 51214, 995, 8447, "Input"],
+Cell[113887, 2427, 68, 2, 43, "Code"],
+Cell[113958, 2431, 499, 9, 43, "Input"],
+Cell[114460, 2442, 75, 2, 43, "Code"]
 }
 ]
 *)
 
-(* End of internal cache information *)

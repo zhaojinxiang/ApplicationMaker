@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     18148,        484]
-NotebookOptionsPosition[     17112,        450]
-NotebookOutlinePosition[     17791,        474]
-CellTagsIndexPosition[     17748,        471]
+NotebookDataLength[     18491,        492]
+NotebookOptionsPosition[     17416,        457]
+NotebookOutlinePosition[     18093,        481]
+CellTagsIndexPosition[     18050,        478]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -32,14 +32,13 @@ Cell[BoxData[
      RowBox[{"jmlopez", ".", 
       RowBox[{"rod", "@", "gmail"}], ".", "com"}]}]}], " ", "*)"}], "\n", 
   RowBox[{"(*", " ", 
-   RowBox[{":", 
-    RowBox[{"Summary", ":", " ", 
-     RowBox[{
-     "Provides", " ", "functions", " ", "to", " ", "create", " ", "a", " ", 
-      "new", " ", "package", " ", "inside", " ", "an", " ", "application", 
-      "\n", "\t\t\t ", "and", " ", "to", " ", "update", " ", "the", " ", 
-      "application", " ", "init", " ", 
-      RowBox[{"file", "."}]}]}]}], " ", "*)"}], "\n", 
+   RowBox[{":", "Summary", ":", " ", 
+    RowBox[{
+    "Provides", " ", "functions", " ", "to", " ", "create", " ", "a", " ", 
+     "new", " ", "package", " ", "inside", " ", "an", " ", "application", 
+     "\n", "\t\t\t ", "and", " ", "to", " ", "update", " ", "the", " ", 
+     "application", " ", "init", " ", 
+     RowBox[{"file", "."}]}]}], " ", "*)"}], "\n", 
   RowBox[{"(*", " ", 
    RowBox[{":", 
     RowBox[{"Context", ":", " ", "ApplicationMaker`PackageMaker`"}]}], " ", 
@@ -66,16 +65,15 @@ Cell[BoxData[
          RowBox[{"February", " ", "23"}], ",", " ", "2011"}], ")"}]}]}]}]}], 
    " ", "*)"}], "\n", 
   RowBox[{"(*", " ", 
-   RowBox[{":", 
-    RowBox[{"Discussion", ":", " ", 
-     RowBox[{
-     "The", " ", "function", " ", "NewPackage", " ", "creates", " ", "a", " ",
-       "new", " ", "notebook", " ", "to", " ", "help", " ", "you", " ", "\n", 
-      "\t\t\t\t", "write", " ", "functions", " ", "for", " ", "the", " ", 
-      RowBox[{"package", ".", " ", "The"}], " ", "function", " ", 
-      "UpdateInit", "\n", "\t\t\t\t", "updates", " ", "the", " ", 
-      "application", " ", "init", " ", 
-      RowBox[{"file", "."}]}]}]}], " ", "*)"}]}]], "Code",
+   RowBox[{":", "Discussion", ":", " ", 
+    RowBox[{
+    "The", " ", "function", " ", "NewPackage", " ", "creates", " ", "a", " ", 
+     "new", " ", "notebook", " ", "to", " ", "help", " ", "you", " ", "\n", 
+     "\t\t\t\t", "write", " ", "functions", " ", "for", " ", "the", " ", 
+     RowBox[{"package", ".", " ", "The"}], " ", "function", " ", "UpdateInit",
+      "\n", "\t\t\t\t", "updates", " ", "the", " ", "application", " ", 
+     "init", " ", 
+     RowBox[{"file", "."}]}]}], " ", "*)"}]}]], "Code",
  CellChangeTimes->{{3.519263325332416*^9, 3.519263336513115*^9}, {
   3.519263383807117*^9, 3.519263474955056*^9}, {3.5192635599008913`*^9, 
   3.519263606544424*^9}}],
@@ -163,6 +161,13 @@ Cell[BoxData[
  RowBox[{
   RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], ";"}]], "Code"],
 
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"fileNameJoin", "=", 
+   RowBox[{"FileNameJoin", "@*", 
+    RowBox[{"DeleteCases", "[", "\"\<\>\"", "]"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.689815144487287*^9, 3.689815146852832*^9}}],
+
 Cell[BoxData[{
  RowBox[{
   RowBox[{"NewPackage", "[", "args___", "]"}], " ", ":=", " ", 
@@ -176,7 +181,7 @@ Cell[BoxData[{
    RowBox[{
    "pkgName_String", ",", " ", "appName_String", ",", "\[IndentingNewLine]", 
     RowBox[{"appDir_String:", " ", 
-     RowBox[{"FileNameJoin", "[", 
+     RowBox[{"fileNameJoin", "[", 
       RowBox[{"{", " ", 
        RowBox[{"$UserBaseDirectory", ",", "\"\<Applications\>\""}], "}"}], 
       "]"}]}]}], "\[IndentingNewLine]", "]"}], " ", ":=", " ", 
@@ -187,7 +192,7 @@ Cell[BoxData[{
     "\[IndentingNewLine]", 
     RowBox[{
      RowBox[{"appNameDir", " ", "=", "  ", 
-      RowBox[{"FileNameJoin", "[", 
+      RowBox[{"fileNameJoin", "[", 
        RowBox[{"{", 
         RowBox[{"appDir", ",", " ", "appName"}], "}"}], "]"}]}], ";", 
      "\[IndentingNewLine]", 
@@ -203,7 +208,7 @@ Cell[BoxData[{
         RowBox[{"Return", "[", "$Failed", "]"}]}]}], "]"}], ";", 
      "\[IndentingNewLine]", 
      RowBox[{"pkgPath", " ", "=", " ", 
-      RowBox[{"FileNameJoin", "[", 
+      RowBox[{"fileNameJoin", "[", 
        RowBox[{"{", 
         RowBox[{"appNameDir", ",", 
          RowBox[{"pkgName", "<>", "\"\<.nb\>\""}]}], " ", "}"}], "]"}]}], ";",
@@ -368,14 +373,15 @@ Cell[BoxData[{
      RowBox[{"Return", "[", "nb", "]"}], ";"}]}], "\[IndentingNewLine]", 
    "]"}]}]}], "Input",
  CellChangeTimes->{
-  3.519263702917594*^9, {3.519265767251409*^9, 3.5192657727223053`*^9}}],
+  3.519263702917594*^9, {3.519265767251409*^9, 3.5192657727223053`*^9}, {
+   3.689815144500293*^9, 3.689815144518306*^9}}],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{"UpdateInit", "[", "\[IndentingNewLine]", 
    RowBox[{"appName_String", ",", " ", "\[IndentingNewLine]", 
     RowBox[{"appDir_String:", 
-     RowBox[{"FileNameJoin", "[", 
+     RowBox[{"fileNameJoin", "[", 
       RowBox[{"{", " ", 
        RowBox[{"$UserBaseDirectory", ",", "\"\<Applications\>\""}], "}"}], 
       "]"}]}]}], "\[IndentingNewLine]", "]"}], ":=", " ", 
@@ -386,7 +392,7 @@ Cell[BoxData[
     "\[IndentingNewLine]", 
     RowBox[{
      RowBox[{"appNameDir", " ", "=", "  ", 
-      RowBox[{"FileNameJoin", "[", 
+      RowBox[{"fileNameJoin", "[", 
        RowBox[{"{", 
         RowBox[{"appDir", ",", " ", "appName"}], "}"}], "]"}]}], ";", 
      "\[IndentingNewLine]", 
@@ -405,13 +411,13 @@ Cell[BoxData[
       RowBox[{"Map", "[", 
        RowBox[{"FileBaseName", ",", " ", 
         RowBox[{"FileNames", "@", 
-         RowBox[{"FileNameJoin", "[", 
+         RowBox[{"fileNameJoin", "[", 
           RowBox[{"{", 
            RowBox[{"appNameDir", ",", " ", "\"\<*.nb\>\""}], "}"}], "]"}]}]}],
         "]"}]}], ";", "\[IndentingNewLine]", 
      RowBox[{"nb", " ", "=", " ", 
       RowBox[{"OpenWrite", "[", 
-       RowBox[{"FileNameJoin", "[", 
+       RowBox[{"fileNameJoin", "[", 
         RowBox[{"{", 
          RowBox[{
          "appNameDir", ",", " ", "\"\<Kernel\>\"", ",", " ", 
@@ -431,7 +437,8 @@ Cell[BoxData[
          RowBox[{"Length", "@", "pkgName"}]}], "}"}]}], "]"}], ";", 
      "\[IndentingNewLine]", 
      RowBox[{"Close", "[", "nb", "]"}]}]}], "\[IndentingNewLine]", 
-   "]"}]}]], "Input"],
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.6898151445303135`*^9, 3.689815144540827*^9}}],
 
 Cell[BoxData[
  RowBox[{
@@ -451,15 +458,15 @@ Cell[BoxData[
 AutoGeneratedPackage->Automatic,
 WindowSize->{849, 669},
 WindowMargins->{{26, Automatic}, {Automatic, 10}},
-FrontEndVersion->"8.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (February 23, \
-2011)",
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (2016\:5e747\:670828\
+\:65e5)",
 StyleDefinitions->Notebook[{
    Cell[
     StyleData[StyleDefinitions -> "Default.nb"]], 
    Cell[
     StyleData["Input"], InitializationCell -> True]}, Visible -> False, 
   FrontEndVersion -> 
-  "8.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (February 23, 2011)", 
+  "11.0 for Microsoft Windows (64-bit) (2016\:5e747\:670828\:65e5)", 
   StyleDefinitions -> "PrivateStylesheetFormatting.nb"]
 ]
 (* End of Notebook Content *)
@@ -473,21 +480,21 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[557, 20, 2404, 60, 209, "Code"],
-Cell[2964, 82, 125, 4, 43, "Code"],
-Cell[3092, 88, 374, 9, 43, "Input"],
-Cell[3469, 99, 133, 4, 43, "Code"],
-Cell[3605, 105, 956, 22, 88, "Input"],
-Cell[4564, 129, 133, 4, 43, "Code"],
-Cell[4700, 135, 1044, 24, 148, "Input"],
-Cell[5747, 161, 91, 2, 43, "Code"],
-Cell[5841, 165, 8426, 205, 748, "Input"],
-Cell[14270, 372, 2442, 61, 223, "Input"],
-Cell[16715, 435, 68, 2, 43, "Code"],
-Cell[16786, 439, 244, 5, 27, "Input"],
-Cell[17033, 446, 75, 2, 43, "Code"]
+Cell[557, 20, 2360, 58, 249, "Code"],
+Cell[2920, 80, 125, 4, 50, "Code"],
+Cell[3048, 86, 374, 9, 100, "Input"],
+Cell[3425, 97, 133, 4, 50, "Code"],
+Cell[3561, 103, 956, 22, 123, "Input"],
+Cell[4520, 127, 133, 4, 50, "Code"],
+Cell[4656, 133, 1044, 24, 199, "Input"],
+Cell[5703, 159, 91, 2, 50, "Code"],
+Cell[5797, 163, 227, 5, 63, "Input"],
+Cell[6027, 170, 8476, 206, 1616, "Input"],
+Cell[14506, 378, 2510, 62, 467, "Input"],
+Cell[17019, 442, 68, 2, 50, "Code"],
+Cell[17090, 446, 244, 5, 63, "Input"],
+Cell[17337, 453, 75, 2, 50, "Code"]
 }
 ]
 *)
 
-(* End of internal cache information *)

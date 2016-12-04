@@ -74,14 +74,17 @@ UpdateInit::nodir =
 Begin["`Private`"];
 
 
+fileNameJoin=FileNameJoin@*DeleteCases[""];
+
+
 NewPackage[args___] := (Message[NewPackage::argerr];$Failed)
 NewPackage[pkgName_String, appName_String,
-appDir_String: FileNameJoin[{ $UserBaseDirectory,"Applications"}]
+appDir_String: fileNameJoin[{ $UserBaseDirectory,"Applications"}]
 ] := Module[
 {appNameDir, pkgPath, nb},
-appNameDir =  FileNameJoin[{appDir, appName}];
+appNameDir =  fileNameJoin[{appDir, appName}];
 If[!DirectoryQ[appNameDir], Message[NewPackage::nodir, appName, appDir]; Return[$Failed]];
-pkgPath = FileNameJoin[{appNameDir,pkgName<>".nb" }];
+pkgPath = fileNameJoin[{appNameDir,pkgName<>".nb" }];
 If[FileExistsQ[pkgPath],
 Message[NewPackage::pkgerr, appName, Hyperlink["here", pkgPath]]; 
 Return[$Failed]
@@ -125,13 +128,13 @@ Return[nb];
 
 UpdateInit[
 appName_String, 
-appDir_String:FileNameJoin[{ $UserBaseDirectory,"Applications"}]
+appDir_String:fileNameJoin[{ $UserBaseDirectory,"Applications"}]
 ]:= Module[
 {appNameDir, pkgName, nb},
-appNameDir =  FileNameJoin[{appDir, appName}];
+appNameDir =  fileNameJoin[{appDir, appName}];
 If[!DirectoryQ[appNameDir], Message[UpdateInit::nodir, appName, appDir]; Return[$Failed]];
-pkgName = Map[FileBaseName, FileNames@FileNameJoin[{appNameDir, "*.nb"}]];
-nb = OpenWrite[FileNameJoin[{appNameDir, "Kernel", "Init.m"}]];
+pkgName = Map[FileBaseName, FileNames@fileNameJoin[{appNameDir, "*.nb"}]];
+nb = OpenWrite[fileNameJoin[{appNameDir, "Kernel", "Init.m"}]];
 Do[
 WriteString[nb, "Get[\""<>appName<>"`"<>pkgName[[i]]<>"`\"];\n"];
 ,{i, Length@pkgName}];

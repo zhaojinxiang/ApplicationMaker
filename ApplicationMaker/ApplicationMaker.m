@@ -81,6 +81,9 @@ DeployApplication::nodir =
 Begin["`Private`"];
 
 
+fileNameJoin=FileNameJoin@*DeleteCases[""];
+
+
 NewApplication[args___] := (Message[NewApplication::argerr];$Failed)
 MakeDirectory[root_, start_,main_, sub_] := Module[
 {nm, ns, tmp},
@@ -88,7 +91,7 @@ nm = Position[main, start];
 If[Length@nm != 0, nm=nm[[1,1]]];
 If[Length@sub[[nm]] !=0,
 Do[
-tmp=FileNameJoin[{root,start,sub[[nm,i]]}];
+tmp=fileNameJoin[{root,start,sub[[nm,i]]}];
 If[DirectoryQ[tmp], 
 Print[Style["Existing Directory : ", "MSG", Gray],Style[tmp, "MSG", Bold]], 
 CreateDirectory[tmp];
@@ -97,16 +100,16 @@ Print[Style["Directory Created  : ", "MSG", Blue],Style[tmp, "MSG", Bold]]
 ,{i,Length@sub[[nm]]}]
 ];
 Do[
-MakeDirectory[FileNameJoin[{root,start}], sub[[nm,i]], main, sub],
+MakeDirectory[fileNameJoin[{root,start}], sub[[nm,i]], main, sub],
 {i,Length@sub[[nm]]}
 ]
 ]
 NewApplication[
 appName_String, 
-appDir_String:FileNameJoin[{ $UserBaseDirectory,"Applications"}]
+appDir_String:fileNameJoin[{ $UserBaseDirectory,"Applications"}]
 ]:= Module[
 {appNameDir, main, sub},
-appNameDir =  FileNameJoin[{appDir, appName}];
+appNameDir =  fileNameJoin[{appDir, appName}];
 If[DirectoryQ[appNameDir],
 Print[Style["Existing Directory : ", "MSG", Gray],Style[appNameDir, "MSG", Bold]],
 CreateDirectory[appNameDir]; 
@@ -127,7 +130,7 @@ MakeDirectory["", appNameDir, main, sub];
 ChangeNotebookSettings[path_, index_,  header_, footer_]:= Module[{nb, newpath, winTitle},
 nb=NotebookOpen[path];
 winTitle =Options[nb, WindowTitle][[1]][[2]];
-newpath = FileNameJoin[{DirectoryName[path], StringDrop[FileNameTake[path], 3]}];
+newpath = fileNameJoin[{DirectoryName[path], StringDrop[FileNameTake[path], 3]}];
 NotebookSave[nb, newpath];
 SetOptions[nb,
 Saveable->False,
@@ -154,15 +157,15 @@ BuildApplication[
 appName_String,
 version_String: "0.0.1",
 header_String: "", footer_String: "",
-appDir_String: FileNameJoin[{ $UserBaseDirectory,"Applications"}]
+appDir_String: fileNameJoin[{ $UserBaseDirectory,"Applications"}]
 ] := Module[
 {appNameDir, indexDir, tmpPath, files, pacFile, pkg, index, str},
-appNameDir =  FileNameJoin[{appDir, appName}];
-indexDir = FileNameJoin[{appNameDir,"Documentation", "English", "Index" }];
+appNameDir =  fileNameJoin[{appDir, appName}];
+indexDir = fileNameJoin[{appNameDir,"Documentation", "English", "Index" }];
 If[!DirectoryQ[appNameDir], Message[BuildApplication::nodir, appName, appDir]; Return[$Failed]];
 If[FileNames[indexDir]!={},DeleteDirectory[indexDir,DeleteContents->True]];
 index=DocumentationSearch`NewDocumentationNotebookIndexer[indexDir];
-pacFile = OpenWrite[FileNameJoin[{appNameDir, "PacletInfo.m"}]];
+pacFile = OpenWrite[fileNameJoin[{appNameDir, "PacletInfo.m"}]];
 WriteString[pacFile, "Paclet[
 	Name -> \""<>appName<>"\",
 	Version -> \""<>version<>"\",
@@ -186,27 +189,27 @@ WriteString[pacFile, "\t\t\t}
 			LinkBase -> \""<>appName<>"\",
 			Resources -> {\n"];
 (* :GUIDES: *)
-files = FileNames[FileNameJoin[{appNameDir,"Documentation","English","Guides","___*"}]];
+files = FileNames[fileNameJoin[{appNameDir,"Documentation","English","Guides","___*"}]];
 Do[
 str = ChangeNotebookSettings[files[[i]], index, header, footer];
 Print[
 Style["Adding Guide : ", "MSG", Gray],
 Style[StringDrop[ FileBaseName[files[[i]]],3], "MSG", Bold]
 ];
-WriteString[pacFile, "\t\t\t\t\""<>FileNameJoin[{"Guides",str}]<>"\",\n"];
+WriteString[pacFile, "\t\t\t\t\""<>fileNameJoin[{"Guides",str}]<>"\",\n"];
 ,{i, Length@files}];
 (* :TUTORIALS: *)
-files = FileNames[FileNameJoin[{appNameDir,"Documentation","English","Tutorials","___*"}]];
+files = FileNames[fileNameJoin[{appNameDir,"Documentation","English","Tutorials","___*"}]];
 Do[
 str = ChangeNotebookSettings[files[[i]], index, header, footer];
 Print[
 Style["Adding Tutorial : ", "MSG", Gray],
 Style[StringDrop[ FileBaseName[files[[i]]],3], "MSG", Bold]
 ];
-WriteString[pacFile, "\t\t\t\t\""<>FileNameJoin[{"Tutorials",str}]<>"\",\n"];
+WriteString[pacFile, "\t\t\t\t\""<>fileNameJoin[{"Tutorials",str}]<>"\",\n"];
 ,{i, Length@files}];
 (* :REFERENCES: *)
-files = FileNames[FileNameJoin[
+files = FileNames[fileNameJoin[
 {appNameDir,"Documentation","English","ReferencePages","Symbols","___*"}
 ]];
 Do[
@@ -215,14 +218,14 @@ Print[
 Style["Adding Reference : ", "MSG", Gray],
 Style[StringDrop[ FileBaseName[files[[i]]],3], "MSG", Bold]
 ];
-WriteString[pacFile, "\t\t\t\t\""<>FileNameJoin[{"ReferencePages","Symbols",str}]<>"\",\n"];
+WriteString[pacFile, "\t\t\t\t\""<>fileNameJoin[{"ReferencePages","Symbols",str}]<>"\",\n"];
 ,{i, Length@files-1}];
 str = ChangeNotebookSettings[files[[-1]], index, header, footer];
 Print[
 Style["Adding Reference : ", "MSG", Gray],
 Style[StringDrop[ FileBaseName[files[[-1]]],3], "MSG", Bold]
 ];
-WriteString[pacFile, "\t\t\t\t\""<>FileNameJoin[{"ReferencePages","Symbols",str}]<>"\"\n"];
+WriteString[pacFile, "\t\t\t\t\""<>fileNameJoin[{"ReferencePages","Symbols",str}]<>"\"\n"];
 WriteString[pacFile, "\t\t\t}
 		}
 	}
@@ -237,21 +240,21 @@ DeployApplication[args___] := (Message[DeployApplication::argerr];$Failed)
 DeployApplication[
 appName_String,
 destDir_String,
-appDir_String: FileNameJoin[{ $UserBaseDirectory,"Applications"}]
+appDir_String: fileNameJoin[{ $UserBaseDirectory,"Applications"}]
 ] := Module[
 {appNameDir, files},
-appNameDir =  FileNameJoin[{appDir, appName}];
+appNameDir =  fileNameJoin[{appDir, appName}];
 If[!DirectoryQ[appNameDir], Message[BuildApplication::nodir, appName, appDir]; Return[$Failed]];
-If[MatchQ[CopyDirectory[appNameDir, FileNameJoin[{destDir,appName}]], $Failed],Return[$Failed]];
-DeleteFile[FileNames@FileNameJoin[{destDir,appName, "*.nb"}]];
-DeleteFile[FileNames@FileNameJoin[{destDir,appName, "Documentation", "English", "ReferencePages","Symbols", "___*.nb"}]];
-DeleteFile[FileNames@FileNameJoin[{destDir,appName, "Documentation", "English", "Guides", "___*.nb"}]];
-DeleteFile[FileNames@FileNameJoin[{destDir,appName, "Documentation", "English", "Tutorials", "___*.nb"}]];
+If[MatchQ[CopyDirectory[appNameDir, fileNameJoin[{destDir,appName}]], $Failed],Return[$Failed]];
+DeleteFile[FileNames@fileNameJoin[{destDir,appName, "*.nb"}]];
+DeleteFile[FileNames@fileNameJoin[{destDir,appName, "Documentation", "English", "ReferencePages","Symbols", "___*.nb"}]];
+DeleteFile[FileNames@fileNameJoin[{destDir,appName, "Documentation", "English", "Guides", "___*.nb"}]];
+DeleteFile[FileNames@fileNameJoin[{destDir,appName, "Documentation", "English", "Tutorials", "___*.nb"}]];
 Print[
 Style["The application ", "MSG"], 
 Style[appName, "MSG", Bold], 
 Style[" has been deployed to ", "MSG"], 
-Style[FileNameJoin[{destDir,appName}], "MSG", Bold]
+Style[fileNameJoin[{destDir,appName}], "MSG", Bold]
 ];
 ]
 

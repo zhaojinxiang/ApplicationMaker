@@ -114,6 +114,9 @@ CreateReferencePages::symb =
 Begin["`Private`"];
 
 
+fileNameJoin=FileNameJoin@*DeleteCases[""];
+
+
 ClearAll[RuleToString, QuoteList];
 QuoteList[str_] :=Module[{nl, newstr=""},
 If[MatchQ[str, _String],Return@StringJoin["\"", str, "\""]];
@@ -209,12 +212,12 @@ If[!MatchQ[nb,_NotebookObject], Message[EditNotebookOption::argerr]; Return[$Fai
 
 NewGuide[args___] := (Message[NewGuide::argerr];$Failed)
 NewGuide[guideName_String, appName_String,
-appDir_String: FileNameJoin[{ $UserBaseDirectory,"Applications"}]
+appDir_String: fileNameJoin[{ $UserBaseDirectory,"Applications"}]
 ] := Module[
 {appNameDir, guidePath, nb},
-appNameDir =  FileNameJoin[{appDir, appName}];
+appNameDir =  fileNameJoin[{appDir, appName}];
 If[!DirectoryQ[appNameDir], Message[NewGuide::nodir, appName, appDir]; Return[$Failed]];
-guidePath = FileNameJoin[
+guidePath = fileNameJoin[
 {appNameDir,"Documentation", "English","Guides",StringJoin["___", guideName,".nb"] }
 ];
 If[FileExistsQ[guidePath],
@@ -224,7 +227,7 @@ Return[$Failed]
 nb = CreateDocument[];
 
 SetOptions[nb, 
-StyleDefinitions-> FileNameJoin[{appDir, "ApplicationMaker","FrontEnd", "Stylesheets", "UserReference"<>ToString[Floor[$VersionNumber]] <>".nb"}],
+StyleDefinitions-> fileNameJoin[{appDir, "ApplicationMaker","FrontEnd", "Stylesheets", "UserReference"<>ToString[Floor[$VersionNumber]] <>".nb"}],
 DockedCells-> None,
 WindowTitle -> guideName<>" - "<>appName,
 TaggingRules-> {
@@ -309,12 +312,12 @@ Return[nb];
 
 NewTutorial[args___] := (Message[NewTutorial::argerr];$Failed)
 NewTutorial[tutName_String, appName_String,
-appDir_String: FileNameJoin[{ $UserBaseDirectory,"Applications"}]
+appDir_String: fileNameJoin[{ $UserBaseDirectory,"Applications"}]
 ] := Module[
 {appNameDir, tutPath, nb},
-appNameDir =  FileNameJoin[{appDir, appName}];
+appNameDir =  fileNameJoin[{appDir, appName}];
 If[!DirectoryQ[appNameDir], Message[NewTutorial::nodir, appName, appDir]; Return[$Failed]];
-tutPath = FileNameJoin[
+tutPath = fileNameJoin[
 {appNameDir,"Documentation", "English","Tutorials",StringJoin["___", tutName,".nb"] }
 ];
 If[FileExistsQ[tutPath],
@@ -323,7 +326,7 @@ Return[$Failed]
 ];
 nb = CreateDocument[];
 SetOptions[nb, 
-StyleDefinitions-> FileNameJoin[{appDir, "ApplicationMaker","FrontEnd", "Stylesheets", "UserReference"<>".nb"}],
+StyleDefinitions-> fileNameJoin[{appDir, "ApplicationMaker","FrontEnd", "Stylesheets", "UserReference"<>".nb"}],
 DockedCells-> None,
 WindowTitle -> tutName<>" - "<>appName,
 TaggingRules-> {
@@ -391,13 +394,13 @@ Return[nb];
 
 CreateReferencePages[args___] := (Message[CreateReferencePages::argerr];$Failed)
 CreateReferencePages[appName_String,
-appDir_String: FileNameJoin[{ $UserBaseDirectory,"Applications"}]
+appDir_String: fileNameJoin[{ $UserBaseDirectory,"Applications"}]
 ] := Module[
 {appNameDir, symDir, refPath, pkg, sym, nb, str},
 Get[appName<>"`"];
 Off[General::stop];
-appNameDir =  FileNameJoin[{appDir, appName}];
-symDir = FileNameJoin[
+appNameDir =  fileNameJoin[{appDir, appName}];
+symDir = fileNameJoin[
 {appNameDir,"Documentation", "English","ReferencePages", "Symbols" }
 ];
 If[!DirectoryQ[appNameDir], Message[CreateReferencePages::nodir, appName, appDir]; Return[$Failed]];
@@ -406,11 +409,11 @@ Do[
 Print[Style["Building reference pages for: ", "MSG"],Style[pkg[[i]], "Input"]];
 sym = Names[StringJoin[appName, "`", pkg[[i]], "`*"]];
 Do[
-refPath = FileNameJoin[{symDir, StringJoin["___",sym[[j]],".nb"]}];
+refPath = fileNameJoin[{symDir, StringJoin["___",sym[[j]],".nb"]}];
 If[FileExistsQ[refPath], Message[CreateReferencePages::symb, sym[[j]],  Hyperlink["here", refPath]],
 nb = CreateDocument[];
 SetOptions[nb,
-StyleDefinitions-> FileNameJoin[
+StyleDefinitions-> fileNameJoin[
 {appDir, "ApplicationMaker","FrontEnd", "Stylesheets", "UserReference"<>".nb"}
 ],
 DockedCells-> None,
